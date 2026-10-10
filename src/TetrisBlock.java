@@ -67,29 +67,14 @@ public class TetrisBlock implements BlockPrototype
     
     // -------------- end --------------  
 
-        // random selection of the predefined blocks
-	public static TetrisBlock getRandomBlock()
-	{
-            CloneFactory blockMaker = new CloneFactory();
-            TetrisBlock selectedBlock;
-            
-		switch((int)(Math.random()*5))
-		{
-			case 0: selectedBlock = LONG;
-                        break;
-			case 1: selectedBlock =  LEFT_L;
-                        break;
-			case 2: selectedBlock =  TEE;
-                        break;
-			case 3: selectedBlock =  RIGHT_L;
-                        break;
-			case 4: selectedBlock =  SQUARE;
-                        break;
-                        default:
-                            throw new IllegalStateException("unexpected block number");
-		}
-		return (TetrisBlock)blockMaker.getClone(selectedBlock);
-	}
+
+// FACTORY PATTERN CHANGE START: make piece selection the concrete factorie's responsibility
+
+ public static TetrisBlock getRandomBlock()
+{
+    return BlockFactory.randomFactory().createBlock();
+}
+// FACTORY PATTERN CHANGE END
 
 	public int getX()
 	{
