@@ -68,6 +68,22 @@ public class TetrisBlock implements BlockPrototype
     // -------------- end --------------  
 
 
+// Original code: TetrisBlock selected the random shape.
+// The refactored version moves that choice to BlockFactory.
+ /*
+public static TetrisBlock getRandomBlock()
+{
+    switch ((int)(Math.random() * 5))
+    {
+        case 0: return LONG;
+        case 1: return LEFT_L;
+        case 2: return TEE;
+        case 3: return RIGHT_L;
+        case 4: return SQUARE;
+    }
+    return null;
+}
+*/
 
 	public int getX()
 	{
