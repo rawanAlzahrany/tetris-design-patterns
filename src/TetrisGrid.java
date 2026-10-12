@@ -13,10 +13,20 @@ public class TetrisGrid extends BlockGrid
 	}
 
 	public void update()
-	{
-		if(workingBlock == null)
-			setWorkingBlock(TetrisBlock.getRandomBlock().setLocation(getWidth()/2, 0));
-	}
+{
+    if (workingBlock == null)
+    {
+        // Factory Method Pattern:
+        // Select a concrete factory using randomFactory().
+        BlockFactory factory = BlockFactory.randomFactory();
+
+        // Create a new block through the factory.
+        TetrisBlock block = factory.createBlock();
+
+        // Set the block's initial position and assign it to the grid.
+        setWorkingBlock(block.setLocation(getWidth() / 2, 0));
+    }
+}
 
 	public void draw(Graphics g)
 	{
