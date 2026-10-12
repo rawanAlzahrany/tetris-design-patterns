@@ -68,13 +68,6 @@ public class TetrisBlock implements BlockPrototype
     // -------------- end --------------  
 
 
-// FACTORY PATTERN CHANGE START: make piece selection the concrete factorie's responsibility
-
- public static TetrisBlock getRandomBlock()
-{
-    return BlockFactory.randomFactory().createBlock();
-}
-// FACTORY PATTERN CHANGE END
 
 	public int getX()
 	{
