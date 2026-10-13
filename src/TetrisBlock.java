@@ -12,19 +12,19 @@ public class TetrisBlock implements BlockPrototype
 {
         // the shapes of the blocks
 	public static final TetrisBlock LONG = new TetrisBlock(
-		new boolean[][]{{true, true, true, true}}, Color.RED);
+		new boolean[][]{{true, true, true, true}}, Color.PINK);
 
 	public static final TetrisBlock LEFT_L = new TetrisBlock(new boolean[][]{
-		{true, true, true}, {true, false, false}}, Color.BLUE);
+		{true, true, true}, {true, false, false}}, Color.MAGENTA);
 
 	public static final TetrisBlock TEE = new TetrisBlock(
-		new boolean[][]{{true, true, true}, {false, true, false}}, Color.BLUE);
+		new boolean[][]{{true, true, true}, {false, true, false}}, Color.YELLOW);
 
 	public static final TetrisBlock RIGHT_L = new TetrisBlock(new boolean[][]{
 		{true, true, true}, {false, false, true}}, Color.CYAN);
 
 	public static final TetrisBlock SQUARE = new TetrisBlock(new boolean[][]{
-		{true, true}, {true, true}}, Color.BLACK);
+		{true, true}, {true, true}}, Color.GRAY);
 
 	private boolean[][] blocks;
 	private Color color;
