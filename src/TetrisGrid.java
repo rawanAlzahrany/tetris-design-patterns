@@ -11,6 +11,22 @@ public class TetrisGrid extends BlockGrid
 	{
 		super(width, height);
 	}
+        // ========== FACADE START ==========
+
+// Reset the board and score for a new game
+public void resetGame() {
+
+    // Remove all locked blocks
+    lockedBlocks.clear();
+
+    // Remove the current falling block
+    workingBlock = null;
+
+    // Reset the score
+    points = 0;
+}
+
+// ========== FACADE END ==========
 
 	public void update()
 {

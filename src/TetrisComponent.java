@@ -25,7 +25,12 @@ public class TetrisComponent extends JComponent
     private int dropDelay = 25;
     private int delay = 0;
     private int delayDelay = 0;
+// ========== FACADE START ==========
 
+// Tracks whether the game is paused
+private boolean paused = false;
+
+// ========== FACADE END ==========
     public TetrisComponent(int width, int height) {
 
         super();
@@ -66,7 +71,52 @@ public class TetrisComponent extends JComponent
 
     // ========== DECORATOR END ==========
 
+// ========== FACADE START ==========
 
+// Pause the game
+public void pauseGame() {
+
+    if (!paused) {
+        gameTimer.stop();
+        paused = true;
+    }
+}
+// Resume the paused game
+public void resumeGame() {
+
+    if (paused) {
+        gameTimer.start();
+        paused = false;
+    }
+
+    requestFocusInWindow();
+}
+// Restart the game
+public void restartGame() {
+
+    // Stop the current game
+    gameTimer.stop();
+
+    // Reset the falling speed
+    dropDelay = 25;
+    delay = 0;
+    delayDelay = 0;
+
+    // Reset the board and score
+    grid.resetGame();
+
+    // Create the first block
+    grid.update();
+
+    // Start the new game
+    paused = false;
+    gameTimer.start();
+
+    repaint();
+    requestFocusInWindow();
+}
+
+// ========== FACADE END ==========
     // OLD VERSION - run() using Thread
     /*
     public void run() {
@@ -155,7 +205,13 @@ public class TetrisComponent extends JComponent
 
     @Override
     public void keyPressed(KeyEvent ke) {
-
+        
+// ========== FACADE START ==========
+// Prevent block movement while paused
+if (paused) {
+    return;
+}
+// ========== FACADE END ==========
         if (ke.getKeyCode() == KeyEvent.VK_LEFT)
             grid.moveLeft();
 

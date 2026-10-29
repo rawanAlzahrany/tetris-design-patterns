@@ -22,6 +22,12 @@ public class PlayTetris extends JFrame {
 
         // Store the game so we can change its theme
         TetrisComponent game = new TetrisComponent(10, 20);
+        // ========== FACADE START ==========
+
+// Create the Facade to manage game operations
+TetrisGameFacade gameFacade = new TetrisGameFacade(game);
+
+// ========== FACADE END ==========
 
         // Theme selection panel
         JPanel themePanel =
@@ -63,6 +69,32 @@ public class PlayTetris extends JFrame {
         add(game, BorderLayout.CENTER);
 
         // ========== DECORATOR END ==========
+        // ========== FACADE START ==========
+
+// Panel for game control buttons
+JPanel controlPanel = new JPanel(
+        new FlowLayout(FlowLayout.CENTER));
+
+// Create the buttons
+JButton pauseButton = new JButton("Pause");
+JButton resumeButton = new JButton("Resume");
+JButton restartButton = new JButton("Restart");
+
+// Add buttons to the panel
+controlPanel.add(pauseButton);
+controlPanel.add(resumeButton);
+controlPanel.add(restartButton);
+// Connect buttons to the Facade Pattern
+pauseButton.addActionListener(event -> gameFacade.pauseGame());
+
+resumeButton.addActionListener(event -> gameFacade.resumeGame());
+
+restartButton.addActionListener(event -> gameFacade.restartGame());
+
+// Place the buttons below the game
+add(controlPanel, BorderLayout.SOUTH);
+
+// ========== FACADE END ==========
 
         // Original window setup
         pack();
